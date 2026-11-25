@@ -1,0 +1,57 @@
+Integrante 1: [Maria Paula Santacruz]
+Integrante 2: [Bruce hidalgo]
+
+REQUISITOS FUNCIONALES
+
+RF-01. El programa permite registrar libros impresos, libros digitales y artículos de papelería.
+Origen: “Vendo tres cosas: libros de papel, libros digitales y papelería.”
+
+RF-02. El programa permite consultar todos los productos registrados.
+Origen: “Quiero poder registrar productos nuevos y ver la lista de todo lo que tengo.”
+
+RF-03. El programa permite buscar productos usando una parte del nombre y sin distinguir mayúsculas de minúsculas.
+Origen: “Necesito encontrar rápido un producto por su nombre.”
+Origen adicional: “Nadie se acuerda del nombre completo y cada uno lo escribe como quiere, con mayúsculas o sin mayúsculas.”
+
+RF-04. El programa permite hacer una venta para un cliente cargado, incluyendo varios productos y varias unidades.
+Origen: “Una venta es para un cliente y puede tener varios productos y varias unidades de cada uno.”
+
+RF-05. El programa muestra el resultado de la venta y el detalle de sus valores.
+Origen: “Al final quiero ver cuánto paga. Mi contador, además, quiere ver de dónde sale cada centavo.”
+
+REGLAS DE NEGOCIO
+
+RN-01. Cada producto tiene código, nombre y precio; no se permiten códigos repetidos.
+Origen: “De todo necesito el código, el nombre y el precio.”
+Origen adicional: “Una vez tuve dos libros distintos con el mismo código y fue un desastre: cobré uno por otro durante un mes.”
+
+RN-02. Los libros impresos guardan autor y existencias; los digitales guardan autor y formato PDF o EPUB y no se agotan.
+Origen: “De los libros de papel me interesa el autor y cuántos tengo en la bodega. De los digitales, el autor y el formato, que puede ser PDF o EPUB. Esos nunca se me acaban.”
+
+RN-03. La papelería guarda marca y existencias.
+Origen: “De la papelería, la marca y cuántos me quedan.”
+
+RN-04. No se puede vender más unidades de las que hay disponibles. Los libros digitales no limitan la cantidad por existencias.
+Origen: “Lo que más me duele es vender algo que no tengo.”
+Origen adicional: “Esos nunca se me acaban.”
+
+RN-05. Los clientes socios reciben un descuento del 10 % en libros; la papelería no recibe descuento.
+Origen: “A ellos les hago el 10 % de descuento.”
+Origen adicional: “En los cuadernos y esferos no, ahí no gano casi nada.”
+
+RN-06. Los libros impresos y digitales no pagan IVA; la papelería paga 15 % de IVA.
+Origen: “Los libros no pagan IVA, ni los de papel ni los digitales, pero la papelería sí, el 15 %.”
+
+DATOS DE PRUEBA
+
+Al iniciar se cargan seis productos (dos por tipo) y dos clientes (un socio y uno no socio). Los datos se mantienen en memoria y se pierden al cerrar el programa.
+Origen: reglas técnicas de la sección 3, “Datos de prueba” y “Datos”.
+
+REGISTRO DE PROMPTS
+
+Prompt usado por el usuario (completar nombre del integrante):
+“eres un programador junior que recien esta viendo lo que es herencia, polimorfismo, clases, atributos, override, array list, list, con respecto a eso, quiero que hagas el siguiente programa, pero quiero que hagas cosas que no hemos visto.”
+
+Prompt de aclaración del usuario: “Sí, solo conceptos vistos (Recomendado)”.
+
+Error de IA y corrección: La primera versión de la tabla no mostraba autor, formato ni marca. Se revisó el requisito de consultar todos los datos de los productos y se agregó la columna “Detalle”, con su contenido definido de forma distinta en cada tipo de producto.

@@ -1,0 +1,160 @@
+<html>
+<head>
+<title>Venta.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#191a1c">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Venta.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">modelo</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">Venta </span><span class="s2">{</span>
+    <span class="s0">private </span><span class="s1">Cliente cliente</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">DetalleVenta</span><span class="s2">&gt; </span><span class="s1">detalles</span><span class="s2">;</span>
+    <span class="s0">private boolean </span><span class="s1">confirmada</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">Venta</span><span class="s2">(</span><span class="s1">Cliente cliente</span><span class="s2">) {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">cliente </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s0">throw new </span><span class="s1">IllegalArgumentException</span><span class="s2">(</span><span class="s3">&quot;Debe seleccionar un cliente.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">cliente </span><span class="s2">= </span><span class="s1">cliente</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">detalles </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">DetalleVenta</span><span class="s2">&gt;();</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">confirmada </span><span class="s2">= </span><span class="s0">false</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">Cliente getCliente</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">cliente</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">DetalleVenta</span><span class="s2">&gt; </span><span class="s1">getDetalles</span><span class="s2">() {</span>
+        <span class="s0">return new </span><span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">DetalleVenta</span><span class="s2">&gt;(</span><span class="s1">detalles</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public boolean </span><span class="s1">estaConfirmada</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">confirmada</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">agregarProducto</span><span class="s2">(</span><span class="s1">Producto producto</span><span class="s2">, </span><span class="s0">int </span><span class="s1">cantidad</span><span class="s2">) {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">confirmada</span><span class="s2">) {</span>
+            <span class="s0">throw new </span><span class="s1">IllegalArgumentException</span><span class="s2">(</span><span class="s3">&quot;La venta ya fue confirmada.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">producto </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s0">throw new </span><span class="s1">IllegalArgumentException</span><span class="s2">(</span><span class="s3">&quot;Debe seleccionar un producto.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">cantidad </span><span class="s2">&lt;= </span><span class="s4">0</span><span class="s2">) {</span>
+            <span class="s0">throw new </span><span class="s1">IllegalArgumentException</span><span class="s2">(</span><span class="s3">&quot;La cantidad debe ser mayor que cero.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">detalles</span><span class="s2">.</span><span class="s1">size</span><span class="s2">(); </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s1">DetalleVenta detalle </span><span class="s2">= </span><span class="s1">detalles</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">i</span><span class="s2">);</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getProducto</span><span class="s2">().</span><span class="s1">getCodigo</span><span class="s2">().</span><span class="s1">equalsIgnoreCase</span><span class="s2">(</span><span class="s1">producto</span><span class="s2">.</span><span class="s1">getCodigo</span><span class="s2">())) {</span>
+                <span class="s0">int </span><span class="s1">nuevaCantidad </span><span class="s2">= </span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getCantidad</span><span class="s2">() + </span><span class="s1">cantidad</span><span class="s2">;</span>
+                <span class="s0">if </span><span class="s2">(!</span><span class="s1">producto</span><span class="s2">.</span><span class="s1">tieneExistencias</span><span class="s2">(</span><span class="s1">nuevaCantidad</span><span class="s2">)) {</span>
+                    <span class="s0">throw new </span><span class="s1">IllegalArgumentException</span><span class="s2">(</span>
+                            <span class="s3">&quot;No hay suficientes unidades de &quot; </span><span class="s2">+ </span><span class="s1">producto</span><span class="s2">.</span><span class="s1">getNombre</span><span class="s2">() + </span><span class="s3">&quot;.&quot;</span><span class="s2">);</span>
+                <span class="s2">}</span>
+                <span class="s1">detalles</span><span class="s2">.</span><span class="s1">set</span><span class="s2">(</span><span class="s1">i</span><span class="s2">, </span><span class="s0">new </span><span class="s1">DetalleVenta</span><span class="s2">(</span><span class="s1">producto</span><span class="s2">, </span><span class="s1">nuevaCantidad</span><span class="s2">, </span><span class="s1">cliente</span><span class="s2">));</span>
+                <span class="s0">return</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s0">if </span><span class="s2">(!</span><span class="s1">producto</span><span class="s2">.</span><span class="s1">tieneExistencias</span><span class="s2">(</span><span class="s1">cantidad</span><span class="s2">)) {</span>
+            <span class="s0">throw new </span><span class="s1">IllegalArgumentException</span><span class="s2">(</span>
+                    <span class="s3">&quot;No hay suficientes unidades de &quot; </span><span class="s2">+ </span><span class="s1">producto</span><span class="s2">.</span><span class="s1">getNombre</span><span class="s2">() + </span><span class="s3">&quot;.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+        <span class="s1">detalles</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">DetalleVenta</span><span class="s2">(</span><span class="s1">producto</span><span class="s2">, </span><span class="s1">cantidad</span><span class="s2">, </span><span class="s1">cliente</span><span class="s2">));</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public double </span><span class="s1">getSubtotal</span><span class="s2">() {</span>
+        <span class="s0">double </span><span class="s1">total </span><span class="s2">= </span><span class="s4">0</span><span class="s2">;</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">DetalleVenta detalle </span><span class="s2">: </span><span class="s1">detalles</span><span class="s2">) {</span>
+            <span class="s1">total </span><span class="s2">= </span><span class="s1">total </span><span class="s2">+ </span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getSubtotal</span><span class="s2">();</span>
+        <span class="s2">}</span>
+        <span class="s0">return </span><span class="s1">total</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public double </span><span class="s1">getDescuento</span><span class="s2">() {</span>
+        <span class="s0">double </span><span class="s1">total </span><span class="s2">= </span><span class="s4">0</span><span class="s2">;</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">DetalleVenta detalle </span><span class="s2">: </span><span class="s1">detalles</span><span class="s2">) {</span>
+            <span class="s1">total </span><span class="s2">= </span><span class="s1">total </span><span class="s2">+ </span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getDescuento</span><span class="s2">();</span>
+        <span class="s2">}</span>
+        <span class="s0">return </span><span class="s1">total</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public double </span><span class="s1">getIva</span><span class="s2">() {</span>
+        <span class="s0">double </span><span class="s1">total </span><span class="s2">= </span><span class="s4">0</span><span class="s2">;</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">DetalleVenta detalle </span><span class="s2">: </span><span class="s1">detalles</span><span class="s2">) {</span>
+            <span class="s1">total </span><span class="s2">= </span><span class="s1">total </span><span class="s2">+ </span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getIva</span><span class="s2">();</span>
+        <span class="s2">}</span>
+        <span class="s0">return </span><span class="s1">total</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public double </span><span class="s1">getTotal</span><span class="s2">() {</span>
+        <span class="s0">double </span><span class="s1">total </span><span class="s2">= </span><span class="s4">0</span><span class="s2">;</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">DetalleVenta detalle </span><span class="s2">: </span><span class="s1">detalles</span><span class="s2">) {</span>
+            <span class="s1">total </span><span class="s2">= </span><span class="s1">total </span><span class="s2">+ </span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getTotal</span><span class="s2">();</span>
+        <span class="s2">}</span>
+        <span class="s0">return </span><span class="s1">total</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">confirmar</span><span class="s2">() {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">confirmada</span><span class="s2">) {</span>
+            <span class="s0">throw new </span><span class="s1">IllegalArgumentException</span><span class="s2">(</span><span class="s3">&quot;La venta ya fue confirmada.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">detalles</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()) {</span>
+            <span class="s0">throw new </span><span class="s1">IllegalArgumentException</span><span class="s2">(</span><span class="s3">&quot;Agregue al menos un producto a la venta.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">DetalleVenta detalle </span><span class="s2">: </span><span class="s1">detalles</span><span class="s2">) {</span>
+            <span class="s0">if </span><span class="s2">(!</span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getProducto</span><span class="s2">().</span><span class="s1">tieneExistencias</span><span class="s2">(</span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getCantidad</span><span class="s2">())) {</span>
+                <span class="s0">throw new </span><span class="s1">IllegalArgumentException</span><span class="s2">(</span>
+                        <span class="s3">&quot;Ya no hay suficientes unidades de &quot;</span>
+                                <span class="s2">+ </span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getProducto</span><span class="s2">().</span><span class="s1">getNombre</span><span class="s2">() + </span><span class="s3">&quot;.&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">DetalleVenta detalle </span><span class="s2">: </span><span class="s1">detalles</span><span class="s2">) {</span>
+            <span class="s1">detalle</span><span class="s2">.</span><span class="s1">getProducto</span><span class="s2">().</span><span class="s1">reducirExistencias</span><span class="s2">(</span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getCantidad</span><span class="s2">());</span>
+        <span class="s2">}</span>
+        <span class="s1">confirmada </span><span class="s2">= </span><span class="s0">true</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">String generarComprobante</span><span class="s2">() {</span>
+        <span class="s1">String comprobante </span><span class="s2">= </span><span class="s3">&quot;VENTA - Librería Páginas Andinas</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s2">;</span>
+        <span class="s1">comprobante </span><span class="s2">= </span><span class="s1">comprobante </span><span class="s2">+ </span><span class="s3">&quot;Cliente: &quot; </span><span class="s2">+ </span><span class="s1">cliente</span><span class="s2">.</span><span class="s1">getNombre</span><span class="s2">();</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">cliente</span><span class="s2">.</span><span class="s1">esSocio</span><span class="s2">()) {</span>
+            <span class="s1">comprobante </span><span class="s2">= </span><span class="s1">comprobante </span><span class="s2">+ </span><span class="s3">&quot; (socio)&quot;</span><span class="s2">;</span>
+        <span class="s2">}</span>
+        <span class="s1">comprobante </span><span class="s2">= </span><span class="s1">comprobante </span><span class="s2">+ </span><span class="s3">&quot;</span><span class="s0">\n\n</span><span class="s3">&quot;</span><span class="s2">;</span>
+
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">DetalleVenta detalle </span><span class="s2">: </span><span class="s1">detalles</span><span class="s2">) {</span>
+            <span class="s1">comprobante </span><span class="s2">= </span><span class="s1">comprobante </span><span class="s2">+ </span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getProducto</span><span class="s2">().</span><span class="s1">getNombre</span><span class="s2">()</span>
+                    <span class="s2">+ </span><span class="s3">&quot; x &quot; </span><span class="s2">+ </span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getCantidad</span><span class="s2">()</span>
+                    <span class="s2">+ </span><span class="s3">&quot; | Subtotal: $&quot; </span><span class="s2">+ </span><span class="s1">String</span><span class="s2">.</span><span class="s1">format</span><span class="s2">(</span><span class="s3">&quot;%.2f&quot;</span><span class="s2">, </span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getSubtotal</span><span class="s2">())</span>
+                    <span class="s2">+ </span><span class="s3">&quot; | Descuento: $&quot; </span><span class="s2">+ </span><span class="s1">String</span><span class="s2">.</span><span class="s1">format</span><span class="s2">(</span><span class="s3">&quot;%.2f&quot;</span><span class="s2">, </span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getDescuento</span><span class="s2">())</span>
+                    <span class="s2">+ </span><span class="s3">&quot; | IVA: $&quot; </span><span class="s2">+ </span><span class="s1">String</span><span class="s2">.</span><span class="s1">format</span><span class="s2">(</span><span class="s3">&quot;%.2f&quot;</span><span class="s2">, </span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getIva</span><span class="s2">())</span>
+                    <span class="s2">+ </span><span class="s3">&quot; | Total: $&quot; </span><span class="s2">+ </span><span class="s1">String</span><span class="s2">.</span><span class="s1">format</span><span class="s2">(</span><span class="s3">&quot;%.2f&quot;</span><span class="s2">, </span><span class="s1">detalle</span><span class="s2">.</span><span class="s1">getTotal</span><span class="s2">()) + </span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s1">comprobante </span><span class="s2">= </span><span class="s1">comprobante </span><span class="s2">+ </span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">Subtotal: $&quot; </span><span class="s2">+ </span><span class="s1">String</span><span class="s2">.</span><span class="s1">format</span><span class="s2">(</span><span class="s3">&quot;%.2f&quot;</span><span class="s2">, </span><span class="s1">getSubtotal</span><span class="s2">());</span>
+        <span class="s1">comprobante </span><span class="s2">= </span><span class="s1">comprobante </span><span class="s2">+ </span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">Descuento: $&quot; </span><span class="s2">+ </span><span class="s1">String</span><span class="s2">.</span><span class="s1">format</span><span class="s2">(</span><span class="s3">&quot;%.2f&quot;</span><span class="s2">, </span><span class="s1">getDescuento</span><span class="s2">());</span>
+        <span class="s1">comprobante </span><span class="s2">= </span><span class="s1">comprobante </span><span class="s2">+ </span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">IVA: $&quot; </span><span class="s2">+ </span><span class="s1">String</span><span class="s2">.</span><span class="s1">format</span><span class="s2">(</span><span class="s3">&quot;%.2f&quot;</span><span class="s2">, </span><span class="s1">getIva</span><span class="s2">());</span>
+        <span class="s1">comprobante </span><span class="s2">= </span><span class="s1">comprobante </span><span class="s2">+ </span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">TOTAL A PAGAR: $&quot; </span><span class="s2">+ </span><span class="s1">String</span><span class="s2">.</span><span class="s1">format</span><span class="s2">(</span><span class="s3">&quot;%.2f&quot;</span><span class="s2">, </span><span class="s1">getTotal</span><span class="s2">());</span>
+        <span class="s0">return </span><span class="s1">comprobante</span><span class="s2">;</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>
